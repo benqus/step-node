@@ -1,7 +1,11 @@
 export type Parser<Input> = (...args: Array<unknown>) => Input;
 export type Processor<Node, Input> = (node: Node, input: Input) => void;
 
-export interface IStepNode<Scope = unknown, Input = unknown, Output = unknown> {
+export interface IProcessable {
+  process(...rawInputs: Array<any>): void;
+}
+
+export interface IStepNode<Scope = unknown, Input = unknown, Output = unknown> extends IProcessable {
   /**
    * Scope to preserve data across multiple processes
    */
@@ -10,12 +14,7 @@ export interface IStepNode<Scope = unknown, Input = unknown, Output = unknown> {
   /**
    * Next node to feed output into
    */
-  target: IStepNode<unknown, Output, unknown>;
-
-  /**
-   * Start processing (execution)
-   */
-  process(...rawInputs: Array<unknown>): void;
+  target: IProcessable;
 
   /**
    * Parser for input to be processed
