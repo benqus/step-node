@@ -2,9 +2,7 @@ import { StepNode } from '../dist';
 
 import { logger } from './001-basic';
 
-export type Output = { firstName: string; lastName: string };
-
-export const nameNode = new StepNode<{}, string, Output>();
+export const nameNode = new StepNode<{}, string>();
 nameNode.target = logger;
 
 // define a parser to ensure a single input of expected type

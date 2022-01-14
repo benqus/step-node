@@ -5,7 +5,7 @@ export interface IProcessable {
   process(...rawInputs: Array<any>): void;
 }
 
-export interface IStepNode<Scope = unknown, Input = unknown, Output = unknown> extends IProcessable {
+export interface IStepNode<Scope = unknown, Input = unknown> extends IProcessable {
   /**
    * Scope to preserve data across multiple processes
    */
@@ -29,5 +29,5 @@ export interface IStepNode<Scope = unknown, Input = unknown, Output = unknown> e
   /**
    * Invoke or forward processor output to next step node
    */
-  next: (o: Output) => void;
+  next: (...outputs: Array<any>) => void;
 }

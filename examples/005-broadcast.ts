@@ -24,7 +24,7 @@ broadcastNode.addTarget(target2);
 broadcastNode.addTarget(target3);
 
 // create source node
-const sourceNode = new StepNode<{}, string, string>();
+const sourceNode = new StepNode<{}, string>();
 sourceNode.target = broadcastNode;
 
 // start process

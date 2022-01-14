@@ -24,7 +24,7 @@ distributionNode.addTarget(target2);
 distributionNode.addTarget(target3);
 
 // create source node
-const sourceNode = new StepNode<{}, string, string>();
+const sourceNode = new StepNode<{}, string>();
 sourceNode.target = distributionNode;
 
 // start process

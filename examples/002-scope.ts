@@ -7,7 +7,7 @@ interface AddNodeScope {
 }
 
 // add numbers node with scope, input, output types and scope default values
-const addNode = new StepNode<AddNodeScope, number, number>({
+const addNode = new StepNode<AddNodeScope, number>({
   lastValue: 0,
 });
 

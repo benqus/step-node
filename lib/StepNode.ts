@@ -1,13 +1,12 @@
 import { IProcessable, IStepNode } from './types';
 
-export class StepNode<Scope = unknown, Input = unknown, Output = unknown> implements IStepNode<Scope, Input, Output> {
+export class StepNode<Scope = unknown, Input = unknown> implements IStepNode<Scope, Input> {
   public target: IProcessable = null;
 
   constructor(public scope: Scope = null) {}
 
-  public parser = (...args: Array<unknown>): Input => args[0] as Input;
-  public processor = (node: StepNode<Scope, Input, Output>, input: Input): void =>
-    node.next(input as unknown as Output);
+  public parser = (...args: Array<any>): Input => args[0] as Input;
+  public processor = (node: StepNode<Scope, Input>, input: Input): void => node.next(input);
 
   process(...rawInput: Array<any>): void {
     if (typeof this.processor !== 'function') throw new TypeError('Missing Node executor');
@@ -20,7 +19,7 @@ export class StepNode<Scope = unknown, Input = unknown, Output = unknown> implem
     }
   }
 
-  public next(output: Output): void {
-    this.target?.process(output);
+  public next(...output: Array<any>): void {
+    this.target?.process(...output);
   }
 }
