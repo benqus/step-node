@@ -1,19 +1,9 @@
-import { IProcessable, IStepNode } from "./types";
+import { BaseMultiTargetNode } from './BaseMultiTargetNode';
 
-export class BroadcastNode implements IProcessable {
+export class BroadcastNode extends BaseMultiTargetNode {
 
-  private _targets: Set<IStepNode> = new Set();
-
-  addTarget(node: IStepNode): void {
-    this._targets.add(node);
-  }
-
-  removeTarget(node: IStepNode): void {
-    this._targets.delete(node);
-  }
-
-  process(...args: Array<any>): void {
-    this._targets.forEach(t => t.process(...args));
+  process(...rawInputs: Array<any>): void {
+    this.targets.forEach(node => node.process(...rawInputs));
   }
 
 }

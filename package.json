@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Routable execution nodes",
   "scripts": {
-    "build": "parcel build ./lib/index.ts --log-level verbose --detailed-report 10",
+    "build": "parcel build ./lib/index.ts --detailed-report 10",
     "ts-node": "yarn build --no-cache && ts-node"
   },
   "source": "./lib/index.ts",
