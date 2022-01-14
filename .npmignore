@@ -1,0 +1,8 @@
+.parcel-cache
+node-modules
+parcel-bundle-reports
+.eslintrc.json
+.parcelrc
+.prettierrc
+tsconfig.json
+yarn.lock

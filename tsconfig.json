@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["ESNext", "DOM"],
+    "downlevelIteration": true,
+    "useDefineForClassFields": false
+  },
+  "include": ["lib/**/*"],
+  "exclude": ["node_modules"]
+}
