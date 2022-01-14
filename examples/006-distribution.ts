@@ -16,9 +16,9 @@ target3.processor = (n, ...input) => {
   console.log('Processing', 'target3', ...input);
 };
 
-// Create a broadcast node
+// Create a distribution node
 const distributionNode = new DistributorNode();
-// add targets to broadcast node
+// add targets to distribution node
 distributionNode.addTarget(target1);
 distributionNode.addTarget(target2);
 distributionNode.addTarget(target3);
