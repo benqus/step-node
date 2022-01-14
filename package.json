@@ -1,7 +1,7 @@
 {
   "name": "step-node",
   "version": "0.1.0",
-  "description": "Routable execution nodes",
+  "description": "Dynamically chainable processes",
   "scripts": {
     "build": "parcel build ./lib/index.ts --no-cache --detailed-report 10",
     "ts-node": "yarn build --no-cache && ts-node"
