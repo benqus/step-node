@@ -3,14 +3,20 @@ step-node
 
 Dynamically chainable executions
 
+> `$ ( npm i | yarn add ) step-node`
+
 Basic usage
 ---
 
-> ( npm i | yarn add ) step-node
+Import - as ES Module
 
 ```js
-import { StepNode } from 'step-node';
+import { StepNode, ActiveNode, DistributorNode } from 'step-node';
+```
 
+Usage
+
+```js
 const sourceNode = new StepNode();
 // defining an optional parser
 sourceNode.parser = (name = 'n/a', age = 0, dob = 'n/a') => { name, age, dob };
@@ -40,8 +46,6 @@ sourceNode.process('John Doe', 28, '');
 Or with TypeScript
 
 ```ts
-import { StepNode } from 'step-node';
-
 interface Person {
   name: string;
   name: string;

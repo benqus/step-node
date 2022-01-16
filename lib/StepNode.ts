@@ -1,9 +1,9 @@
 import { IProcessable, IStepNode } from './types';
 
 export class StepNode<Scope = unknown, Input = unknown> implements IStepNode<Scope, Input> {
-  public target: IProcessable = null;
+  public target: IProcessable | null = null;
 
-  constructor(public scope: Scope = null) {}
+  constructor(public scope: Scope | null = null) {}
 
   public parser = (...args: Array<any>): Input => args[0] as Input;
   public processor = (node: this, input: Input): void => node.next(input);

@@ -1,7 +1,7 @@
 import { IRoute, IProcessable } from './types';
 
 export class Route implements IRoute {
-  public target: IProcessable = null;
+  public target: IProcessable | null = null;
 
   constructor(public readonly path: string = '') {}
 }

@@ -1,22 +1,22 @@
 {
   "name": "step-node",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Dynamically chainable executions",
   "scripts": {
-    "build": "yarn test && parcel build ./lib/index.ts --no-cache --detailed-report 10",
+    "build": "yarn test && yarn parcel",
+    "parcel": "parcel build ./lib/index.ts --no-cache --detailed-report 10",
     "jest": "jest",
     "eslint": "eslint lib/**/* test/**/* --ext .ts",
-    "test": "yarn eslint && yarn jest",
-    "ts-node": "yarn build --no-cache && ts-node",
-    "prepublish": "yarn build"
+    "test": "yarn eslint && yarn ts:check && yarn jest",
+    "ts:run": "yarn build --no-cache && ts-node",
+    "ts:check": "tsc --noEmit",
+    "prepack": "yarn build"
   },
   "source": "./lib/index.ts",
   "main": "./dist/index.js",
+  "module": "./dist/module.js",
   "types": "./dist/index.d.ts",
-  "module": "./dist/index.mjs",
-  "engines": {
-    "node": ">=10"
-  },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/benqus/step-node.git"
@@ -27,29 +27,22 @@
     "url": "https://github.com/benqus/step-node/issues"
   },
   "homepage": "https://github.com/benqus/step-node#readme",
-  "dependencies": {
-    "@swc/helpers": "^0.3.2",
-    "regenerator-runtime": "^0.13.9"
-  },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/preset-env": "^7.16.8",
-    "@babel/preset-typescript": "^7.16.7",
-    "@parcel/babel-preset-env": "^2.2.0",
-    "@parcel/packager-ts": "^2.1.1",
-    "@parcel/reporter-bundle-analyzer": "^2.1.1",
-    "@parcel/transformer-typescript-types": "^2.1.1",
+    "@parcel/packager-ts": "^2.2.0",
+    "@parcel/reporter-bundle-analyzer": "^2.2.0",
+    "@parcel/transformer-typescript-types": "^2.2.0",
+    "@swc/core": "^1.2.129",
+    "@swc/jest": "^0.2.17",
+    "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^27.4.0",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
-    "babel-jest": "^27.4.6",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.4.7",
-    "parcel": "^2.1.1",
+    "parcel": "^2.2.0",
     "prettier": "^2.5.1",
-    "ts-node": "^10.4.0",
     "typescript": ">=3.0.0"
   }
 }
