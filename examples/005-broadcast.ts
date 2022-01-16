@@ -1,4 +1,4 @@
-import { BroadcastNode, StepNode } from '../dist';
+import { BroadcasterNode, StepNode } from '../dist';
 
 // Create target nodes
 const target1 = new StepNode();
@@ -17,7 +17,7 @@ target3.processor = (n, ...input) => {
 };
 
 // Create a broadcast node
-const broadcastNode = new BroadcastNode();
+const broadcastNode = new BroadcasterNode();
 // add targets to broadcast node
 broadcastNode.addTarget(target1);
 broadcastNode.addTarget(target2);

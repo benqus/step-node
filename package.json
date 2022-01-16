@@ -1,6 +1,6 @@
 {
   "name": "step-node",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Dynamically chainable executions",
   "scripts": {
     "build": "yarn test && parcel build ./lib/index.ts --no-cache --detailed-report 10",

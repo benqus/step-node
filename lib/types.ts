@@ -1,6 +1,13 @@
 export type Parser<Input> = (...args: Array<unknown>) => Input;
 export type Processor<Node, Input> = (node: Node, input: Input) => void|Promise<void>;
 
+export interface IRoute {
+  readonly path: string;
+  target: IProcessable;
+}
+
+export type RouteParameter = [ string, Array<any> ];
+
 export interface IProcessable {
   process(...rawInputs: Array<any>): void;
 }

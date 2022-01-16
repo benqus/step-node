@@ -19,7 +19,9 @@ routerNode.route('b').target = targetB;
 // create source node
 const sourceNode = new StepNode();
 sourceNode.target = routerNode;
+sourceNode.parser = (path, ...args) => [ path, ...args ];
+sourceNode.processor = (node, input) => node.next(...(input as []));
 
 // start process
-sourceNode.process([ 'a', 'Hi A!' ]);
-sourceNode.process([ 'b', 'Hi B!' ]);
+sourceNode.process('a', 'Hi A!');
+sourceNode.process('b', 'Hi B!');
