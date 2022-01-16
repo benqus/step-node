@@ -2,7 +2,6 @@ import { StepNode } from './StepNode';
 import { IProcessable } from './types';
 
 export class SwapNode extends StepNode {
-
   private _nodes: Array<IProcessable> = [];
 
   getTargetA(): IProcessable {
@@ -25,7 +24,6 @@ export class SwapNode extends StepNode {
 
   swap() {
     const [ a, b ] = this._nodes;
-    this.target = (this.target === a ? b : a);
+    this.target = this.target === a ? b ?? a : a ?? b;
   }
-
 }

@@ -1,5 +1,5 @@
 export type Parser<Input> = (...args: Array<unknown>) => Input;
-export type Processor<Node, Input> = (node: Node, input: Input) => void;
+export type Processor<Node, Input> = (node: Node, input: Input) => void|Promise<void>;
 
 export interface IProcessable {
   process(...rawInputs: Array<any>): void;

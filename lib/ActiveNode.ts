@@ -1,7 +1,6 @@
 import { StepNode } from './StepNode';
 
 export class ActiveNode extends StepNode {
-
   private _active: boolean = true;
 
   get active(): boolean {
@@ -25,5 +24,4 @@ export class ActiveNode extends StepNode {
       super.process(...rawInputs);
     }
   }
-
 }

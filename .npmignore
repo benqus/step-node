@@ -1,5 +1,6 @@
 .parcel-cache
 node-modules
+test
 parcel-bundle-reports
 .eslintrc.json
 .parcelrc

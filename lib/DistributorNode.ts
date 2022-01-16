@@ -11,7 +11,7 @@ export class DistributorNode extends BaseMultiTargetNode {
   }
 
   process(...args: Array<any>): void {
-    const node = [...this.targets][this.index];
+    const node = [ ...this.targets ][this.index];
     node?.process(...args);
   }
 

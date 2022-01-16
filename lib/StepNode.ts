@@ -6,7 +6,7 @@ export class StepNode<Scope = unknown, Input = unknown> implements IStepNode<Sco
   constructor(public scope: Scope = null) {}
 
   public parser = (...args: Array<any>): Input => args[0] as Input;
-  public processor = (node: StepNode<Scope, Input>, input: Input): void => node.next(input);
+  public processor = (node: this, input: Input): void => node.next(input);
 
   process(...rawInput: Array<any>): void {
     if (typeof this.processor !== 'function') throw new TypeError('Missing Node executor');

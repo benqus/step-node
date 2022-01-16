@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "description": "Dynamically chainable executions",
   "scripts": {
-    "build": "parcel build ./lib/index.ts --no-cache --detailed-report 10",
-    "ts-node": "yarn build --no-cache && ts-node"
+    "build": "yarn test && parcel build ./lib/index.ts --no-cache --detailed-report 10",
+    "jest": "jest",
+    "eslint": "eslint lib/**/* test/**/* --ext .ts",
+    "test": "yarn eslint && yarn jest",
+    "ts-node": "yarn build --no-cache && ts-node",
+    "prepublish": "yarn build"
   },
   "source": "./lib/index.ts",
   "main": "./dist/index.js",
@@ -28,12 +32,21 @@
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.8",
+    "@babel/preset-typescript": "^7.16.7",
+    "@parcel/babel-preset-env": "^2.2.0",
     "@parcel/packager-ts": "^2.1.1",
     "@parcel/reporter-bundle-analyzer": "^2.1.1",
     "@parcel/transformer-typescript-types": "^2.1.1",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "babel-jest": "^27.4.6",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.4.7",
     "parcel": "^2.1.1",
     "prettier": "^2.5.1",
     "ts-node": "^10.4.0",
