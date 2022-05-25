@@ -1,20 +1,17 @@
 import { BroadcasterNode, StepNode } from '../dist';
 
 // Create target nodes
-const target1 = new StepNode();
-target1.processor = (n, ...input) => {
+const target1 = new StepNode((n, ...input) => {
   console.log('Processing','target1', ...input);
-};
+});
 
-const target2 = new StepNode();
-target2.processor = (n, ...input) => {
+const target2 = new StepNode((n, ...input) => {
   console.log('Processing', 'target2', ...input);
-};
+});
 
-const target3 = new StepNode();
-target3.processor = (n, ...input) => {
+const target3 = new StepNode((n, ...input) => {
   console.log('Processing', 'target3', ...input);
-};
+});
 
 // Create a broadcast node
 const broadcastNode = new BroadcasterNode();
@@ -28,4 +25,4 @@ const sourceNode = new StepNode<{}, string>();
 sourceNode.target = broadcastNode;
 
 // start process
-sourceNode.process('Hi All!');
+sourceNode.execute('Hi All!');

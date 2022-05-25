@@ -13,43 +13,43 @@ describe('BroadcasterNode', () => {
     bnode.addTarget(t3);
 
     // first call
-    bnode.process(1, 2, 3);
+    bnode.process(1);
 
-    expect(t1.process).toHaveBeenCalled();
-    expect(t1.process).toHaveBeenCalledWith(1, 2, 3);
+    expect(t1.execute).toHaveBeenCalled();
+    expect(t1.execute).toHaveBeenCalledWith(1);
 
-    expect(t2.process).not.toHaveBeenCalled();
+    expect(t2.execute).not.toHaveBeenCalled();
 
-    expect(t3.process).not.toHaveBeenCalled();
+    expect(t3.execute).not.toHaveBeenCalled();
 
     // second call
-    bnode.process(1, 2, 3);
+    bnode.process(2);
 
-    expect(t1.process).toHaveBeenCalledTimes(1);
+    expect(t1.execute).toHaveBeenCalledTimes(1);
 
-    expect(t2.process).toHaveBeenCalled();
-    expect(t2.process).toHaveBeenCalledWith(1, 2, 3);
+    expect(t2.execute).toHaveBeenCalled();
+    expect(t2.execute).toHaveBeenCalledWith(2);
 
-    expect(t3.process).not.toHaveBeenCalled();
+    expect(t3.execute).not.toHaveBeenCalled();
 
     // third call
-    bnode.process(1, 2, 3);
+    bnode.process(3);
 
-    expect(t1.process).toHaveBeenCalledTimes(1);
+    expect(t1.execute).toHaveBeenCalledTimes(1);
 
-    expect(t2.process).toHaveBeenCalledTimes(1);
+    expect(t2.execute).toHaveBeenCalledTimes(1);
 
-    expect(t3.process).toHaveBeenCalled();
-    expect(t3.process).toHaveBeenCalledWith(1, 2, 3);
+    expect(t3.execute).toHaveBeenCalled();
+    expect(t3.execute).toHaveBeenCalledWith(3);
 
     // fourth call
-    bnode.process(1, 2, 3);
+    bnode.process(4);
 
-    expect(t1.process).toHaveBeenCalledTimes(2);
-    expect(t1.process).toHaveBeenLastCalledWith(1, 2, 3);
+    expect(t1.execute).toHaveBeenCalledTimes(2);
+    expect(t1.execute).toHaveBeenLastCalledWith(4);
 
-    expect(t2.process).toHaveBeenCalledTimes(1);
+    expect(t2.execute).toHaveBeenCalledTimes(1);
 
-    expect(t3.process).toHaveBeenCalledTimes(1);
+    expect(t3.execute).toHaveBeenCalledTimes(1);
   });
 });

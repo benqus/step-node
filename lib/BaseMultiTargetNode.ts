@@ -1,18 +1,18 @@
-import { IProcessable } from './types';
+import { IExecutable } from './types';
 
-export class BaseMultiTargetNode implements IProcessable {
+export class BaseMultiTargetNode<Input> implements IExecutable<Input> {
 
-  public targets: Set<IProcessable> = new Set();
+  public targets: Set<IExecutable<Input>> = new Set();
 
-  addTarget(node: IProcessable): void {
+  addTarget(node: IExecutable<Input>): void {
     this.targets.add(node);
   }
 
-  removeTarget(node: IProcessable): void {
+  removeTarget(node: IExecutable<Input>): void {
     this.targets.delete(node);
   }
 
-  process(...rawInputs: Array<any>): void {
+  execute(input: Input): void {
     throw new Error('Method not implemented.');
   }
 

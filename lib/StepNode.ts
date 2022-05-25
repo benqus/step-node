@@ -1,25 +1,23 @@
-import { IProcessable, IStepNode } from './types';
+import { IExecutable, IStepNode } from './types';
 
-export class StepNode<Scope = unknown, Input = unknown> implements IStepNode<Scope, Input> {
-  public target: IProcessable | null = null;
+export class StepNode<Input = unknown, Output = unknown> implements IStepNode<Input, Output> {
+  public target: IExecutable<Output> | null = null;
 
-  constructor(public scope: Scope | null = null) {}
+  constructor(
+    /* eslint-disable no-unused-vars  */
+    public executor = (node: IStepNode<Input, Output>, input: Input): void => node.next(input as unknown as Output)
+  ) {}
 
-  public parser = (...args: Array<any>): Input => args[0] as Input;
-  public processor = (node: this, input: Input): void => node.next(input);
-
-  process(...rawInput: Array<any>): void {
-    if (typeof this.processor !== 'function') throw new TypeError('Missing Node executor');
-    const input = this.parser?.(...rawInput) ?? (rawInput[0] as Input);
+  public execute(input?: Input): void {
     try {
-      this.processor(this, input);
+      this.executor(this, input);
     } catch (e) {
       console.error('Error:StepNode#process', e);
       throw e;
     }
   }
 
-  public next(...output: Array<any>): void {
-    this.target?.process(...output);
+  public next(output: Output): void {
+    this.target?.execute(output);
   }
 }

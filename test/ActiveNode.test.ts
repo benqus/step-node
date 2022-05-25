@@ -3,32 +3,32 @@ import { ActiveNode } from '../lib/ActiveNode';
 describe('ActiveNode', () => {
   test('Active by default', () => {
     const node = new ActiveNode();
-    node.processor = jest.fn();
+    node.executor = jest.fn();
 
-    node.process();
+    node.execute();
 
-    expect(node.processor).toHaveBeenCalled();
+    expect(node.executor).toHaveBeenCalled();
   });
 
   test('Deactivating does not invoke processor', () => {
     const node = new ActiveNode();
-    node.processor = jest.fn();
+    node.executor = jest.fn();
 
     node.deactivate();
-    node.process();
+    node.execute();
 
-    expect(node.processor).not.toHaveBeenCalled();
+    expect(node.executor).not.toHaveBeenCalled();
   });
 
   test('Reactivating does invoke processor', () => {
     const node = new ActiveNode();
-    node.processor = jest.fn();
+    node.executor = jest.fn();
 
     node.deactivate();
     node.activate();
-    node.process();
+    node.execute();
 
-    expect(node.processor).toHaveBeenCalled();
+    expect(node.executor).toHaveBeenCalled();
   });
 
 });

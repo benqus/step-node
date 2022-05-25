@@ -1,7 +1,7 @@
-import { IProcessable } from '../../lib/types';
+import { Args, IExecutable } from '../../lib/types';
 
-export function createIProcessableFixture(implementation?: (...args: Array<any>) => void): IProcessable {
+export function createIProcessableFixture(implementation?: (...args: Args) => void): IExecutable<unknown> {
   return {
-    process: jest.fn(implementation),
+    execute: jest.fn(implementation),
   };
 }

@@ -12,15 +12,15 @@ describe('BroadcasterNode', () => {
     bnode.addTarget(t2);
     bnode.addTarget(t3);
 
-    bnode.process(1, 2, 3);
+    bnode.process(1);
 
-    expect(t1.process).toHaveBeenCalled();
-    expect(t1.process).toHaveBeenCalledWith(1, 2, 3);
+    expect(t1.execute).toHaveBeenCalled();
+    expect(t1.execute).toHaveBeenCalledWith(1);
 
-    expect(t2.process).toHaveBeenCalled();
-    expect(t2.process).toHaveBeenCalledWith(1, 2, 3);
+    expect(t2.execute).toHaveBeenCalled();
+    expect(t2.execute).toHaveBeenCalledWith(1);
 
-    expect(t3.process).toHaveBeenCalled();
-    expect(t3.process).toHaveBeenCalledWith(1, 2, 3);
+    expect(t3.execute).toHaveBeenCalled();
+    expect(t3.execute).toHaveBeenCalledWith(1);
   });
 });

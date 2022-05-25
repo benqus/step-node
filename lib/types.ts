@@ -1,41 +1,32 @@
-export type Parser<Input> = (...args: Array<unknown>) => Input;
-export type Processor<Node, Input> = (node: Node, input: Input) => void|Promise<void>;
+/* eslint-disable no-unused-vars */
+export type Args = Array<unknown>;
+export type Processor<Node, Input> = (node: Node, input: Input) => void | Promise<void>;
 
-export type RouteParameter = [ string, Array<any> ];
+export type RouteParameter = [ string, Args ];
 
-export interface IProcessable {
-  process(...rawInputs: Array<any>): void;
+export interface IExecutable<Input> {
+  execute(input?: Input): void;
 }
 
-export interface ITargetable {
+export interface ITargetable<Input> {
   /**
    * Next node to feed output into
    */
-  target: IProcessable | null;
+  target: IExecutable<Input> | null;
 }
 
-export interface IRoute extends ITargetable {
+export interface IRoute extends ITargetable<null> {
   readonly path: string;
 }
 
-export interface IStepNode<Scope = unknown, Input = unknown> extends IProcessable, ITargetable {
+export interface IStepNode<Input, Output> extends IExecutable<Input>, ITargetable<Output> {
   /**
-   * Scope to preserve data across multiple processes
-   */
-  scope: Scope | null;
-
-  /**
-   * Parser for input to be processed
-   */
-  parser: Parser<Input>;
-
-  /**
-   * Processor method that receives the input
-   */
-  processor: Processor<this, Input>;
+   * Executor method that receives the input
+   */  
+  executor: Processor<this, Input>;
 
   /**
    * Invoke or forward processor output to next step node
    */
-  next: (...outputs: Array<any>) => void;
+  next: (output: Output) => void;
 }

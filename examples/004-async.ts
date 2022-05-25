@@ -1,13 +1,8 @@
 import { StepNode } from '../dist';
 import { logger } from './001-basic';
 
-export const nameNode = new StepNode<{}, string>();
-nameNode.target = logger;
-nameNode.parser = (...args: Array<unknown>): string => {
-  return args.join(' ') || 'Unknown Person';
-};
-nameNode.processor = async (node, i: string): Promise<void> => {
-  const [firstName, ...rest] = i.split(' ');
+export const nameNode = new StepNode<string, {}>(async (node, i: string): Promise<void> => {
+  const [ firstName, ...rest ] = i.split(' ');
   const lastName = rest.pop();
 
   const output = await new Promise(r => {
@@ -15,9 +10,10 @@ nameNode.processor = async (node, i: string): Promise<void> => {
   });
 
   node.next(output);
-};
+});
+nameNode.target = logger;
 
-logger.process('Processing started');
+logger.execute('Processing started');
 
-nameNode.process();
+nameNode.execute();
 

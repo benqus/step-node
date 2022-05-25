@@ -1,6 +1,6 @@
 import { BaseMultiTargetNode } from './BaseMultiTargetNode';
 
-export class DistributorNode extends BaseMultiTargetNode {
+export class DistributorNode<Input = unknown> extends BaseMultiTargetNode<Input> {
   private _index: number = 0;
 
   get index(): number {
@@ -10,9 +10,9 @@ export class DistributorNode extends BaseMultiTargetNode {
     return index;
   }
 
-  process(...args: Array<any>): void {
+  process(input: Input): void {
     const node = [ ...this.targets ][this.index];
-    node?.process(...args);
+    node?.execute(input);
   }
 
 }

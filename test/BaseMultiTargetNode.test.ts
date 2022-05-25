@@ -28,7 +28,7 @@ describe('BaseMultiTargetNode', () => {
   test('process throws error', () => {
     const mnode = new BaseMultiTargetNode();
 
-    expect(() => mnode.process(1)).toThrow('Method not implemented.');
+    expect(() => mnode.execute(1)).toThrow('Method not implemented.');
   });
 
 });

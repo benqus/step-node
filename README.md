@@ -1,7 +1,7 @@
 step-node
 ===
 
-Dynamically chainable executions
+Dynamic pipelines with I/O nodes
 
 > `$ ( npm i | yarn add ) step-node`
 

@@ -4,58 +4,39 @@ describe('StepNode', () => {
   test('Create', () => {
     const node = new StepNode();
 
-    expect(node.scope).toBeNull();
     expect(node.target).toBeNull();
-    expect(node.parser).toBeInstanceOf(Function);
-    expect(node.processor).toBeInstanceOf(Function);
-  });
-
-  test('Default parser to return the first received function parameter', () => {
-    const node = new StepNode();
-    const result = node.parser(1, 2, 3);
-
-    expect(result).toEqual(1);
-  });
-
-  test('Parser to be invoked at process', () => {
-    const node = new StepNode();
-    node.parser = jest.fn();
-
-    node.process(1, 2, 3);
-
-    expect(node.parser).toHaveBeenCalled();
-    expect(node.parser).toHaveBeenCalledWith(1, 2, 3);
+    expect(node.executor).toBeInstanceOf(Function);
   });
 
   test('Default processor to receive node and input', () => {
     const node = new StepNode();
-    node.processor = jest.fn();
+    node.executor = jest.fn();
 
-    node.process(1);
+    node.execute(1);
 
-    expect(node.processor).toHaveBeenCalled();
-    expect(node.processor).toHaveBeenCalledWith(node, 1);
+    expect(node.executor).toHaveBeenCalled();
+    expect(node.executor).toHaveBeenCalledWith(node, 1);
   });
 
   test('Default processor to invoke StepNode#next() with input parameter', () => {
     const node = new StepNode();
     const spy = jest.spyOn(node, 'next');
 
-    node.process(1);
+    node.execute(1);
 
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(1);
   });
 
   test('Processor can be async', (done) => {
-    const node = new StepNode<{}, number>();
-    node.processor = async (node: StepNode<{}, number>, input: number) => {
+    const node = new StepNode<number, number>();
+    node.executor = async (node: StepNode<number, number>, input: number) => {
       setTimeout(() => {
         node.next(input);
       }, 5);
-    }
+    };
 
-    node.process(1);
+    node.execute(1);
 
     setTimeout(done, 10);
   });
@@ -64,10 +45,10 @@ describe('StepNode', () => {
     const source = new StepNode();
     const target = new StepNode();
 
-    const spy = jest.spyOn(target, 'process');
+    const spy = jest.spyOn(target, 'execute');
 
     source.target = target;
-    source.process(1);
+    source.execute(1);
 
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledWith(1);
